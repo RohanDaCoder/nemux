@@ -7,10 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import me.rohandacoder.nemux.ui.screens.ToolsScreen
+import me.rohandacoder.nemux.ui.screens.FavoritesScreen
+import me.rohandacoder.nemux.ui.screens.AboutScreen
 import me.rohandacoder.nemux.ui.theme.NemuxTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,12 +22,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NemuxTheme {
+            NemuxTheme(
+                darkTheme = true // Force dark mode by default
+            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    NemuxApp()
                 }
             }
         }
@@ -31,17 +37,36 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NemuxTheme {
-        Greeting("Android")
+fun NemuxApp() {
+    val navController = rememberNavController()
+    
+    NavHost(
+        navController = navController,
+        startDestination = "tools"
+    ) {
+        composable("tools") {
+            ToolsScreen(
+                onNavigateToAbout = { navController.navigate("about") },
+                onNavigateToFavorites = { navController.navigate("favorites") },
+                onToolClick = { toolId -> 
+                    // TODO: Navigate to tool detail screen when implemented
+                }
+            )
+        }
+        
+        composable("favorites") {
+            FavoritesScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onToolClick = { toolId ->
+                    // TODO: Navigate to tool detail screen when implemented
+                }
+            )
+        }
+        
+        composable("about") {
+            AboutScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
     }
 }

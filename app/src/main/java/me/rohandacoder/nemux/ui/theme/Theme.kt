@@ -29,7 +29,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun NemuxTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true, // Default to dark mode
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
