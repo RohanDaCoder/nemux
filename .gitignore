@@ -1,0 +1,69 @@
+```
+# Android
+.gradle/
+build/
+*.apk
+*.aab
+*.aar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.hprof
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.properties
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+
+# Code coverage
+coverage/
+*.gcov
+*.lcov
+*.profdata
+
+# Python (if any Python scripts in project)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/modules/
+*.sconsign
+*.pru
+.sconsign
+.SConscript
+.SConstruct
+.hg/
+.hgignore
+.hgsigs
+.hgtags
+.gitattributes
+.vagrant
+.pytest_cache/
+.mypy_cache/
+```
